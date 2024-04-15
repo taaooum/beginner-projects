@@ -43,7 +43,7 @@ while True:
     
     while currPlayer < len(players):
         
-        print("Turn of Player " + str(currPlayer + 1))
+        print("Turn of Player {}".format(currPlayer + 1))
         
         roll = RollDice()
         players[currPlayer].score += roll
@@ -55,7 +55,7 @@ while True:
             currPlayer += 1
             continue
         
-        print("You rolled a " + str(roll) + ": current score is " + str(players[currPlayer].score))
+        print("You rolled a {number}: current score is {score}".format(number = roll,score = players[currPlayer].score))
 
         # Ask the player if they want to roll again
         print("Do you want to play again?")
@@ -63,17 +63,23 @@ while True:
         
         # If the player chooses not to roll again, move to the next player's turn
         if againTurn != "y":
-            print("Your score for this round is " + str(players[currPlayer].score))
+            print("Your score for this round is {}".format(players[currPlayer].score))
             currPlayer = currPlayer + 1
 
-    # Finding the winner of the round
-    winnerRound = max(players, key=lambda x: x.score)
-    if(winnerRound.score == 0):
-        print("nobody wins!")
-    else:
-        print("The winner of this round is Player " + str(players.index(winnerRound) + 1))
-        winnerRound.roundsWon += 1 
+    # Finding the maximum score in the round
+    max_score = max(player.score for player in players)
 
+    # Check if there's a winner or if it's a tie
+    winners = [player for player in players if player.score == max_score]
+
+    if max_score == 0:
+        print("Nobody wins!")
+    else:
+        print("The winner(s) of this round is: ")
+        for winner in winners:
+            print("Player {}".format(players.index(winner) + 1))
+            winner.roundsWon += 1
+    
     # Ask if players want to play the next round
     print("Do you want to play a next round?")   
     againRound = input("y/n? ")
@@ -82,8 +88,27 @@ while True:
     if againRound != "y":
         break
     
+    # Resteting the score of each player for next round
+    for player in players:
+        player.score = 0
+    
     currPlayer = currPlayer % total_players
 
-# Finding the winner of the game
-winnerGame = max(players, key=lambda x: x.roundsWon)
-print("The winner of this game is Player " + str(players.index(winnerGame) + 1) + ", who won " + str(winnerGame.roundsWon) +" rounds!")
+# Finding the maximum number of rounds won
+max_rounds_won = max(player.roundsWon for player in players)
+
+# Finding the winners of the game
+winners = []
+for player in players:
+    if player.roundsWon == max_rounds_won:
+        winners.append(player)
+
+# Print winners of the game
+if len(winners) == 1:
+    winner_of_game = players.index(winners[0]) + 1
+    won_rounds = winners[0].roundsWon
+    print(f"The winner of this game is Player {winner_of_game}, who won {won_rounds} round(s)!")
+else:
+    print("It's a tie! The winners of this game are:")
+    for winner in winners:
+        print(f"Player {players.index(winner) + 1}")
