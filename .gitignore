@@ -3,6 +3,6 @@
 story.txt
 
 # Contains sample images for testing "image-to-ascii.py"
-python-logo-small.png
-python-logo.png
-python-logo.jpg
+/python-logo-small.png
+/python-logo.png
+/python-logo.jpg
