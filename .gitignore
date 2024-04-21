@@ -1,3 +1,8 @@
 
 # Contains a story I use for testing "simple-storyteller.py"
 story.txt
+
+# Contains sample images for testing "image-to-ascii.py"
+python-logo-small.png
+python-logo.png
+python-logo.jpg
