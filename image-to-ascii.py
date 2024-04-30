@@ -23,7 +23,7 @@ def save_image(path, ascii_img):
 
 def resize_image(img, scale_factor):
     try:        
-        # Calculate the new dimensions
+        # Calculate the new dimensions of the image
         new_width = int(img.width * scale_factor)
         new_height = int(img.height * scale_factor)
         
