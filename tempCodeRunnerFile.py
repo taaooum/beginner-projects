@@ -1,0 +1,2 @@
+f choice == "stop":
+            return
