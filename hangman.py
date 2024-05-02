@@ -30,12 +30,12 @@ def CheckAwnser(lifes, correct, lastInput, allInputs, awnser):
     else:
         for i in awnser:
             if lastInput == i:
-                print(i, " ")
+                print(i)
                 found_letter = True
             elif i in allInputs:
-                print(i, " ")
+                print(i)
             else: 
-                print("_", " ")
+                print("_")
     
         if found_letter:
             if set(awnser).issubset(set(allInputs)):
@@ -55,7 +55,7 @@ def Game():
     
     # Print placeholders for each letter of the answer word.
     for i in awnser:
-        print("_", " ")
+        print("_")
 
     # Main game loop
     while lifes and not correct:
@@ -75,7 +75,7 @@ def Game():
         lifes, correct = CheckAwnser(lifes, correct, choice, letters, awnser)
   
 # Valid characters that the user can guess.
-valid = ['a', '', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+valid = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 # Path to the database file containing the list of words.
 path = "beginner-projects/resources/hangman-database.txt"
