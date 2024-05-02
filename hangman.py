@@ -10,11 +10,11 @@ def ChooseWord(path):
     try:
         file = open(path, "r")
         database = file.readlines()
+        file.close()
+        return random.choice(database).strip().lower()
     except Exception as e:
         print("An error occurred while accessing the database:", e)
-    finally:
-        file.close()
-    return database[random.randint(0, len(database) - 1)]
+        return None
 
 # Returns a updated number of remaining attempts/lives and the status of correctness.
 def CheckAwnser(lifes, correct, lastInput, allInputs, awnser):
@@ -30,12 +30,12 @@ def CheckAwnser(lifes, correct, lastInput, allInputs, awnser):
     else:
         for i in awnser:
             if lastInput == i:
-                print(i)
+                print(i, end=" ")
                 found_letter = True
             elif i in allInputs:
-                print(i)
+                print(i, end=" ")
             else: 
-                print("_")
+                print("_", end=" ")
     
         if found_letter:
             if set(awnser).issubset(set(allInputs)):
@@ -55,12 +55,11 @@ def Game():
     
     # Print placeholders for each letter of the answer word.
     for i in awnser:
-        print("_")
+        print("_", end=" ")
 
     # Main game loop
     while lifes and not correct:
-        
-        print("You have {} lifes left!".format(lifes))
+        print("\nYou have {} lifes left!".format(lifes))
         
         # Get user input for guessing a character or word.
         choice = input("Choose a character or word you want to try! ").lower()
@@ -73,6 +72,8 @@ def Game():
         
         # Check the correctness of the user's input.
         lifes, correct = CheckAwnser(lifes, correct, choice, letters, awnser)
+    if not lifes:
+        print("The awnser was {} ! Mabye next time...".format(awnser))
   
 # Valid characters that the user can guess.
 valid = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -81,5 +82,5 @@ valid = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', '
 path = "beginner-projects/resources/hangman-database.txt"
 
 # Start the game.
-print("Let's play Hangman! Try to beat me! You have 10 lives.")
+print("\nLet's play Hangman! Try to beat me! You have 10 lives.")
 Game()
