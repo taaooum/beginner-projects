@@ -1,2 +1,0 @@
-f choice == "stop":
-            return
