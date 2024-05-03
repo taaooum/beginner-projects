@@ -4,7 +4,7 @@ This repository contains various projects I have worked on in diffrent languages
 
 ## Projects
 
-###Python Projects
+### Python Projects
 - **dice-game.py**
   - Description: A simple dice game implemented in Python.
 
@@ -20,7 +20,7 @@ This repository contains various projects I have worked on in diffrent languages
 - **simple-storyteller.py**
   - Description: A simple program to generate random stories in Python.
 
-###C# Projects
+### C# Projects
 - **fibonacci-calculator.cs**
   - Description: Implementation of a Fibonacci calculator in C#.
     
